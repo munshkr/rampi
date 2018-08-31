@@ -15,12 +15,17 @@ if you tried it and found something wrong or unexpected.*
 
 ## Installation
 
-*NOTE: I haven't uploaded a gem yet, so please refer to Development section on
-how to install it.*
+*NOTE: I haven't uploaded a gem yet, so please refer to the Manual installation section.*
 
-Run `gem install` to install
+Run the following to install Rampi
 
     $ gem install rampi
+
+### Manual installation
+
+1. Make sure Bundler is installed: `gem install bundler`.
+2. Clone this repository and run `bin/setup` to install any dependencies.
+3. Run `bundle exec rake install` to install Rampi.
 
 
 ## Usage
@@ -30,8 +35,6 @@ Use `r` and `c1`, `c2`, etc. to set ramp velocity and code lines.
 
 
 ## Development
-
-First, you will need Bundler to install dependencies: `gem install bundler`.
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run
 `rake test` to run the tests. You can also run `bin/console` for an interactive

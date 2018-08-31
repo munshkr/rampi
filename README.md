@@ -4,15 +4,22 @@ Rampi is a REPL for [Rampcode](https://github.com/gabochi/rampclon), a bytecode
 interpreter for Puredata. Rampi allows you to extend rampcode's minimalistic
 language *on-the-fly*.
 
+*NOTE: This is still very much BETA (as well as Rampcode itself).  Let me know
+if you tried it and found something wrong or unexpected.*
+
+
 ## Installation
 
 Run `gem install` to install
 
     $ gem install rampi
 
+
 ## Usage
 
-TODO: Write usage instructions here
+Start Puredata and load the rampcode patch. Then on a terminal run `rampi`
+Use `r` and `c1`, `c2`, etc. to set ramp velocity and code lines.
+
 
 ## Development
 
@@ -25,6 +32,7 @@ release a new version, update the version number in `version.rb`, and then run
 `bundle exec rake release`, which will create a git tag for the version, push
 git commits and tags, and push the `.gem` file to
 [rubygems.org](https://rubygems.org).
+
 
 ## Contributing
 

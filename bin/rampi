@@ -7,8 +7,12 @@ options = {:name => nil, :age => nil}
 parser = OptionParser.new do|opts|
   opts.banner = "Usage: rampi [options]"
 
-  opts.on('-f', '--file FILE', 'Evaluate file') do |path|
+  opts.on('-f', '--file FILE', 'Evaluate the contenst of a file') do |path|
     options[:file] = path
+  end
+
+  opts.on('-e', '--eval CODE', 'Evaluate inline code') do |code|
+    options[:eval] = code
   end
 
   opts.on('-p', '--port PORT', 'Connect to a different port (default: 3005)') do |port|
@@ -23,11 +27,16 @@ end
 
 parser.parse!
 
-if options[:file]
+if options[:file] || options[:eval]
   require 'rampi/code'
 
-  code = Rampi::Code.from_file(options[:file], port: options[:port])
-  code.eval
+  if options[:file]
+    code = Rampi::Code.from_file(options[:file], port: options[:port])
+    code.eval
+  else
+    code = Rampi::Code.new(options[:eval], port: options[:port])
+    code.eval
+  end
 else
   require 'rampi/repl'
 

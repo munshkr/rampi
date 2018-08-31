@@ -30,6 +30,16 @@ class Rational
   prepend Rampi::CoreExt::Numeric
 end
 
-class Fixnum
-  prepend Rampi::CoreExt::Numeric
+if RUBY_VERSION.to_f >= 2.4
+  class Integer
+    prepend Rampi::CoreExt::Numeric
+  end
+else
+  class Fixnum
+    prepend Rampi::CoreExt::Numeric
+  end
+
+  class Bignum
+    prepend Rampi::CoreExt::Numeric
+  end
 end

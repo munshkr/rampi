@@ -1,16 +1,11 @@
 #!/usr/bin/env ruby
 require 'rampi'
-require 'rampi/repl'
-#require 'optparse'
+require 'optparse'
 
-=begin
 options = {:name => nil, :age => nil}
 
 parser = OptionParser.new do|opts|
   opts.banner = "Usage: rampi [options]"
-  opts.on('-e', '--eval', 'Evaluate string') do |string|
-    options[:eval] = string
-  end
 
   opts.on('-f', '--file FILE', 'Evaluate file') do |path|
     options[:file] = path
@@ -24,9 +19,13 @@ end
 
 parser.parse!
 
-if options[:eval]
-=end
+if options[:file]
+  require 'rampi/code'
 
-#include Rampi
+  code = Rampi::Code.from_file(options[:file])
+  code.eval
+else
+  require 'rampi/repl'
 
-Rampi::REPL.start
+  Rampi::REPL.start
+end

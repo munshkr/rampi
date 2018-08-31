@@ -3,6 +3,7 @@ require 'rampi/node'
 require 'rampi/functions'
 require 'rampi/compiler'
 require 'rampi/helpers'
+require 'open3'
 
 module Rampi
   include Rampi::Variables
@@ -15,7 +16,7 @@ module Rampi
 
   # Set ramp speed of +value+
   def ramp(value=nil)
-    if value and @@ramp != value
+    if value
       @@ramp = value
       sync!
     end
@@ -23,26 +24,16 @@ module Rampi
   end
 
   # Set code line for channel +num+ with +synth+ and parameters
-  def code(num, synth, lpf: nil, lpq: nil, delay_ms: nil, delay_feed: nil, pan: nil)
-    new_code = {
-      synth: synth,
-      lpf: lpf,
-      lpq: lpq,
-      delay_ms: delay_ms,
-      delay_feed: delay_feed,
-      pan: pan,
-    }
-    if @@code[num] != new_code
-      @@code[num] = new_code
-      sync!
-    end
+  def code(num, synth, lpf: 0, lpq: 0, delay_ms: 0, delay_feed: 0, pan: 0)
+    @@code[num] = [synth, lpf, lpq, delay_ms, delay_feed, pan]
+    sync!
     @@code[num]
   end
 
   # Generate code methods
   9.times do |i|
     define_method("c#{i+1}") do |synth, **kwargs|
-      code(i, synth, **kwargs)
+      code(i+1, synth, **kwargs)
     end
   end
 
@@ -58,7 +49,12 @@ module Rampi
   private
 
   def sync!
-    # TODO run pdsend or use some OSC client !
+    Open3.popen3('pdsend 3005') do |i, o, e, t|
+      i.write compile
+      i.close
+      res = o.read
+      puts "pdsend: #{res}" if !res.empty?
+    end
   end
 
   def compile

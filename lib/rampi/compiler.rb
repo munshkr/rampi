@@ -1,8 +1,8 @@
 class Compiler
   def compile(ramp:, code:)
     code_body = code.map { |num, code_line|
-      code_line.map { |k, v| v && v.accept(self) }.reject(&:nil?).join(' ')
-    }.join(',')
+      code_line.map { |v| v && try(v) }.reject(&:nil?).join(' ')
+    }.join(', ')
 
     "r #{ramp};\n" \
     "#{ code_body.empty? ? '' : "c #{code_body};\n"}"

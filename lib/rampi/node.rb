@@ -1,80 +1,25 @@
 module Rampi
   class Node
-    def +(rvalue)
-      BinaryExpr.new(:+, self, rvalue)
-    end
+    def +(rvalue);  BinaryExpr.new(:+, self, rvalue); end
+    def -(rvalue);  BinaryExpr.new(:-, self, rvalue) end
+    def *(rvalue);  BinaryExpr.new(:*, self, rvalue); end
+    def /(rvalue);  BinaryExpr.new(:/, self, rvalue); end
+    def %(rvalue);  BinaryExpr.new(:%, self, rvalue); end
+    def **(rvalue); BinaryExpr.new(:**, self, rvalue); end
+    def >>(rvalue); BinaryExpr.new(:>>, self, rvalue); end
+    def <<(rvalue); BinaryExpr.new(:<<, self, rvalue); end
+    def <(rvalue);  BinaryExpr.new(:<, self, rvalue); end
+    def <=(rvalue); BinaryExpr.new(:<=, self, rvalue); end
+    def >(rvalue);  BinaryExpr.new(:>, self, rvalue); end
+    def >=(rvalue); BinaryExpr.new(:>=, self, rvalue); end
+    def ==(rvalue); BinaryExpr.new(:==, self, rvalue); end
+    def !=(rvalue); BinaryExpr.new(:!=, self, rvalue); end
+    def &(rvalue);  BinaryExpr.new(:&, self, rvalue); end
+    def ^(rvalue);  BinaryExpr.new(:^, self, rvalue); end
+    def |(rvalue);  BinaryExpr.new(:|, self, rvalue); end
 
-    def -(rvalue)
-      BinaryExpr.new(:-, self, rvalue)
-    end
-
-    def *(rvalue)
-      BinaryExpr.new(:*, self, rvalue)
-    end
-
-    def /(rvalue)
-      BinaryExpr.new(:/, self, rvalue)
-    end
-
-    def %(rvalue)
-      BinaryExpr.new(:%, self, rvalue)
-    end
-
-    def **(rvalue)
-      BinaryExpr.new(:**, self, rvalue)
-    end
-
-    def >>(rvalue)
-      BinaryExpr.new(:>>, self, rvalue)
-    end
-
-    def <<(rvalue)
-      BinaryExpr.new(:<<, self, rvalue)
-    end
-
-    def <(rvalue)
-      BinaryExpr.new(:<, self, rvalue)
-    end
-
-    def <=(rvalue)
-      BinaryExpr.new(:<=, self, rvalue)
-    end
-
-    def >(rvalue)
-      BinaryExpr.new(:>, self, rvalue)
-    end
-
-    def >=(rvalue)
-      BinaryExpr.new(:>=, self, rvalue)
-    end
-
-    def ==(rvalue)
-      BinaryExpr.new(:==, self, rvalue)
-    end
-
-    def !=(rvalue)
-      BinaryExpr.new(:!=, self, rvalue)
-    end
-
-    def &(rvalue)
-      BinaryExpr.new(:&, self, rvalue)
-    end
-
-    def ^(rvalue)
-      BinaryExpr.new(:^, self, rvalue)
-    end
-
-    def |(rvalue)
-      BinaryExpr.new(:|, self, rvalue)
-    end
-
-    def -@
-      UnaryExpr.new(:-, self)
-    end
-
-    def ~
-      UnaryExpr.new(:~, self)
-    end
+    def -@; UnaryExpr.new(:-, self); end
+    def ~;  UnaryExpr.new(:~, self); end
   end
 
   class BinaryExpr < Node

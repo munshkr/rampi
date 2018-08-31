@@ -3,6 +3,7 @@ require 'rampi/node'
 require 'rampi/functions'
 require 'rampi/compiler'
 require 'rampi/helpers'
+require 'rampi/core_ext'
 require 'open3'
 
 module Rampi

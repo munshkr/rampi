@@ -1,7 +1,9 @@
 #!/usr/bin/env ruby
 require 'rampi'
-require 'optparse'
+require 'rampi/repl'
+#require 'optparse'
 
+=begin
 options = {:name => nil, :age => nil}
 
 parser = OptionParser.new do|opts|
@@ -23,11 +25,8 @@ end
 parser.parse!
 
 if options[:eval]
+=end
 
+#include Rampi
 
-
-require 'rampi/repl'
-
-include Rampi
-
-REPL.start
+Rampi::REPL.start

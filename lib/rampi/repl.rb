@@ -17,7 +17,8 @@ module Rampi
       configure
       load_init_script
 
-      Pry.start
+      dsl = DSL.new
+      dsl.pry
     end
 
     def configure

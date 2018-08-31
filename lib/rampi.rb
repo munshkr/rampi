@@ -46,6 +46,9 @@ module Rampi
   alias :m :min
   alias :s :sin
   alias :p :pow
+  alias :q :step
+  alias :f :exp
+  alias :i :invexp
 
   private
 

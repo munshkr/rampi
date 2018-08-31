@@ -44,17 +44,30 @@ module Rampi
     end
   end
 
+  ##
   # Common aliases for functions and variables
+  #
+
+  # Same as #ramp
   alias :r :ramp
+  # Same as #code(1, ...)
   alias :c :c1
+  # Same as v1
   alias :t :v1
+  # Same as v2
   alias :x :v2
+  # Same as min(x, y)
   alias :m :min
+  # Same as sin(x)
   alias :s :sin
+  # Same as pow(x, y)
   alias :p :pow
+  # Same as step(x)
   alias :q :step
-  alias :f :exp
-  alias :i :invexp
+  # Same as expe(x)
+  alias :f :expe
+  # Same as invexpe(x)
+  alias :i :invexpe
 
   private
 

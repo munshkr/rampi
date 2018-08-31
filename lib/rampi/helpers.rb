@@ -9,12 +9,12 @@ module Rampi
     end
 
     # Exponential envelope
-    def exp(value)
+    def expe(value)
       1 - pow((v1 % 1000) / 1000, value)
     end
 
     # Inverse exponential envelope
-    def invexp(value)
+    def invexpe(value)
       pow((v1 % 1000) / 1000, value)
     end
   end

@@ -1,22 +1,24 @@
-module Rampi::CoreExt
-  module Numeric
-    def +(o);  o.is_a?(Node) ? BinaryExpr.new(:+, self, o)  : super(o); end
-    def -(o);  o.is_a?(Node) ? BinaryExpr.new(:-, self, o)  : super(o); end
-    def *(o);  o.is_a?(Node) ? BinaryExpr.new(:*, self, o)  : super(o); end
-    def /(o);  o.is_a?(Node) ? BinaryExpr.new(:/, self, o)  : super(o); end
-    def %(o);  o.is_a?(Node) ? BinaryExpr.new(:%, self, o)  : super(o); end
-    def **(o); o.is_a?(Node) ? BinaryExpr.new(:**, self, o) : super(o); end
-    def >>(o); o.is_a?(Node) ? BinaryExpr.new(:>>, self, o) : super(o); end
-    def <<(o); o.is_a?(Node) ? BinaryExpr.new(:<<, self, o) : super(o); end
-    def <(o);  o.is_a?(Node) ? BinaryExpr.new(:<, self, o)  : super(o); end
-    def <=(o); o.is_a?(Node) ? BinaryExpr.new(:<=, self, o) : super(o); end
-    def >(o);  o.is_a?(Node) ? BinaryExpr.new(:>, self, o)  : super(o); end
-    def >=(o); o.is_a?(Node) ? BinaryExpr.new(:>=, self, o) : super(o); end
-    def ==(o); o.is_a?(Node) ? BinaryExpr.new(:==, self, o) : super(o); end
-    def !=(o); o.is_a?(Node) ? BinaryExpr.new(:!=, self, o) : super(o); end
-    def &(o);  o.is_a?(Node) ? BinaryExpr.new(:&, self, o)  : super(o); end
-    def ^(o);  o.is_a?(Node) ? BinaryExpr.new(:^, self, o)  : super(o); end
-    def |(o);  o.is_a?(Node) ? BinaryExpr.new(:|, self, o)  : super(o); end
+module Rampi
+  module CoreExt
+    module Numeric
+      def +(o);  o.is_a?(Node) ? BinaryExpr.new(:+, self, o)  : super(o); end
+      def -(o);  o.is_a?(Node) ? BinaryExpr.new(:-, self, o)  : super(o); end
+      def *(o);  o.is_a?(Node) ? BinaryExpr.new(:*, self, o)  : super(o); end
+      def /(o);  o.is_a?(Node) ? BinaryExpr.new(:/, self, o)  : super(o); end
+      def %(o);  o.is_a?(Node) ? BinaryExpr.new(:%, self, o)  : super(o); end
+      def **(o); o.is_a?(Node) ? BinaryExpr.new(:**, self, o) : super(o); end
+      def >>(o); o.is_a?(Node) ? BinaryExpr.new(:>>, self, o) : super(o); end
+      def <<(o); o.is_a?(Node) ? BinaryExpr.new(:<<, self, o) : super(o); end
+      def <(o);  o.is_a?(Node) ? BinaryExpr.new(:<, self, o)  : super(o); end
+      def <=(o); o.is_a?(Node) ? BinaryExpr.new(:<=, self, o) : super(o); end
+      def >(o);  o.is_a?(Node) ? BinaryExpr.new(:>, self, o)  : super(o); end
+      def >=(o); o.is_a?(Node) ? BinaryExpr.new(:>=, self, o) : super(o); end
+      def ==(o); o.is_a?(Node) ? BinaryExpr.new(:==, self, o) : super(o); end
+      def !=(o); o.is_a?(Node) ? BinaryExpr.new(:!=, self, o) : super(o); end
+      def &(o);  o.is_a?(Node) ? BinaryExpr.new(:&, self, o)  : super(o); end
+      def ^(o);  o.is_a?(Node) ? BinaryExpr.new(:^, self, o)  : super(o); end
+      def |(o);  o.is_a?(Node) ? BinaryExpr.new(:|, self, o)  : super(o); end
+    end
   end
 end
 

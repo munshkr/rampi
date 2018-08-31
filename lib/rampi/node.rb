@@ -90,6 +90,10 @@ module Rampi
       "(#{@left} #{@op} #{@right})"
     end
     alias_method :inspect, :to_s
+
+    def accept(visitor)
+      visitor.visit_binary_expr(self)
+    end
   end
 
   class UnaryExpr < Node
@@ -104,19 +108,10 @@ module Rampi
       "#{@op}#{@value}"
     end
     alias_method :inspect, :to_s
-  end
 
-  class Term < Node
-    attr_accessor :value
-
-    def initialize(value)
-      @value = value
+    def accept(visitor)
+      visitor.visit_unary_expr(self)
     end
-
-    def to_s
-      @value.to_s
-    end
-    alias_method :inspect, :to_s
   end
 
   class Func < Node
@@ -134,6 +129,10 @@ module Rampi
       "#{@name}(#{args_s}#{!kwargs_s.empty? ? ", #{kwargs_s}" : ''})"
     end
     alias_method :inspect, :to_s
+
+    def accept(visitor)
+      visitor.visit_func(self)
+    end
   end
 
   class Var < Node
@@ -147,5 +146,9 @@ module Rampi
       name.to_s
     end
     alias_method :inspect, :to_s
+
+    def accept(visitor)
+      visitor.visit_var(self)
+    end
   end
 end

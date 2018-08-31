@@ -1,20 +1,28 @@
 require 'rampi/version'
 require 'rampi/node'
 require 'rampi/functions'
+require 'rampi/compiler'
 
 module Rampi
   include Rampi::Functions
 
+  # FIXME
+  @@ramp ||= 1.0
+  @@code ||= {}
+
   # Set ramp speed of +value+
-  def ramp(value)
-    @ramp = value
+  def ramp(value=nil)
+    if value and @@ramp != value
+      @@ramp = value
+      sync!
+    end
+    @@ramp
   end
   alias :r :ramp
 
   # Set code line for channel +num+ with +synth+ and parameters
-  def code(num, synth, lpf=0, lpq=1, delay_ms=None, delay_feed=None, pan=0.5)
-    @code ||= {}
-    @code[num] = {
+  def code(num, synth, lpf: nil, lpq: nil, delay_ms: nil, delay_feed: nil, pan: nil)
+    new_code = {
       synth: synth,
       lpf: lpf,
       lpq: lpq,
@@ -22,8 +30,19 @@ module Rampi
       delay_feed: delay_feed,
       pan: pan,
     }
+    if @@code[num] != new_code
+      @@code[num] = new_code
+      sync!
+    end
+    @@code[num]
   end
-  alias :c :code
+
+  # Generate code methods
+  9.times do |i|
+    define_method("c#{i+1}") do |synth, **kwargs|
+      code(i, synth, **kwargs)
+    end
+  end
 
   # Ramp variable
   def v1
@@ -41,8 +60,20 @@ module Rampi
   end
 
   # Common aliases for functions and variables
+  alias :c :c1
   alias :s :sin
   alias :p :pow
   alias :v :v1
   alias :x :v2
+
+  private
+
+  def sync!
+    # TODO run pdsend or use some OSC client !
+  end
+
+  def compile
+    @compiler ||= Compiler.new
+    @compiler.compile(ramp: @@ramp, code: @@code)
+  end
 end

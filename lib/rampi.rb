@@ -25,7 +25,7 @@ module Rampi
   end
 
   # Set code line for channel +num+ with +synth+ and parameters
-  def code(num, synth, lpf: 0, lpq: 0, delay_ms: 0, delay_feed: 0, pan: 0)
+  def code(num, synth, lpf=0, lpq=0, delay_ms=0, delay_feed=0, pan=0)
     @@code[num] = [synth, lpf, lpq, delay_ms, delay_feed, pan]
     sync!
     @@code[num]
@@ -33,8 +33,8 @@ module Rampi
 
   # Generate code methods
   9.times do |i|
-    define_method("c#{i+1}") do |synth, **kwargs|
-      code(i+1, synth, **kwargs)
+    define_method("c#{i+1}") do |synth, *args|
+      code(i+1, synth, *args)
     end
   end
 

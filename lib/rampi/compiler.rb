@@ -25,7 +25,7 @@ class Compiler
   end
 
   def visit_binary_expr(n)
-    "#{try(n.left)}#{n.op}#{try(n.right)}"
+    "(#{try(n.left)}#{n.op}#{try(n.right)})"
   end
 
   def try(node_or_value)

@@ -31,6 +31,12 @@ module Rampi
     @@code[num]
   end
 
+  # Silence everything!
+  def hush
+    @@code = {}
+    sync!
+  end
+
   # Generate code methods
   9.times do |i|
     define_method("c#{i+1}") do |synth, *args|

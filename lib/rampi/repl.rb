@@ -13,11 +13,11 @@ module Rampi
       "# Here you can customize or define functions \n" \
       "# that will be available in Rampi\n\n"
 
-    def start
+    def start(port: nil)
       configure
       load_init_script
 
-      dsl = DSL.new
+      dsl = DSL.new(port: port)
       dsl.pry
     end
 

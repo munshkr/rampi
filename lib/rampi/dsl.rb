@@ -11,7 +11,9 @@ module Rampi
     include Rampi::Functions
     include Rampi::Helpers
 
-    def initialize
+    def initialize(port: 3005, autosync: true)
+      @port = port
+      @autosync = autosync
       @ramp ||= 1.0
       @code ||= {}
     end
@@ -20,7 +22,7 @@ module Rampi
     def ramp(value=nil)
       if value
         @ramp = value
-        sync!
+        sync
       end
       @ramp
     end
@@ -28,14 +30,14 @@ module Rampi
     # Set code line for channel +num+ with +synth+ and parameters
     def code(num, synth, lpf=0, lpq=0, delay_ms=0, delay_feed=0, pan=0)
       @code[num] = [synth, lpf, lpq, delay_ms, delay_feed, pan]
-      sync!
+      sync
       @code[num]
     end
 
     # Silence everything!
     def hush
       @code = {}
-      sync!
+      sync
     end
 
     ##
@@ -70,10 +72,12 @@ module Rampi
     # Same as invexpe(x)
     alias_method :i, :invexpe
 
-    private
+    def sync
+      sync! if @autosync
+    end
 
     def sync!
-      Open3.popen3('pdsend 3005') do |i, o, e, t|
+      Open3.popen3("pdsend #{@port}") do |i, o, e, t|
         i.write compile
         i.close
         res = o.read

@@ -11,6 +11,10 @@ parser = OptionParser.new do|opts|
     options[:file] = path
   end
 
+  opts.on('-p', '--port PORT', 'Connect to a different port (default: 3005)') do |port|
+    options[:port] = port.to_i
+  end
+
   opts.on('-h', '--help', 'Display this message') do
     puts opts
     exit
@@ -22,10 +26,10 @@ parser.parse!
 if options[:file]
   require 'rampi/code'
 
-  code = Rampi::Code.from_file(options[:file])
+  code = Rampi::Code.from_file(options[:file], port: options[:port])
   code.eval
 else
   require 'rampi/repl'
 
-  Rampi::REPL.start
+  Rampi::REPL.start(port: options[:port])
 end

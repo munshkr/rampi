@@ -4,9 +4,6 @@ Rampi is a REPL for [Rampcode](https://github.com/gabochi/rampclon), a bytecode
 interpreter for Puredata. Rampi allows you to extend rampcode's minimalistic
 language *on-the-fly*.
 
-*NOTE: This is still very much BETA (as well as Rampcode itself).  Let me know
-if you tried it and found something wrong or unexpected.*
-
 
 ## Dependencies
 
@@ -14,8 +11,6 @@ if you tried it and found something wrong or unexpected.*
 * Bundler
 
 ## Installation
-
-*NOTE: I haven't uploaded a gem yet, so please refer to the Manual installation section.*
 
 Run the following to install Rampi
 

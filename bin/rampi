@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+require 'rampi'
+require 'rampi/repl'
+
+include Rampi
+
+REPL.start

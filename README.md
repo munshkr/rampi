@@ -28,6 +28,17 @@ Run the following to install Rampi
 3. Run `bundle exec rake install` to install Rampi.
 
 
+## Editor integration
+
+### Vim
+
+Add the following line on your `~/.vimrc` file:
+
+```
+autocmd BufWritePost *.rampi silent exec "!rampi -f <afile>"
+autocmd BufNewFile,BufRead *.rampi set syntax=ruby
+```
+
 ## Usage
 
 Start Puredata and load the rampcode patch. Then on a terminal run `rampi`

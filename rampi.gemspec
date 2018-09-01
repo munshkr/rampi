@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Damián Silvani"]
   spec.email         = ["munshkr@gmail.com"]
 
-  spec.summary       = %q{REPL for Rampcode, a bytecode interpreter for Puredata}
+  spec.summary       = %q{REPL for Rampcode, a bytebeat interpreter for Puredata}
   spec.homepage      = "https://github.com/munshkr/rampi"
 
   # Specify which files should be added to the gem when it is released.

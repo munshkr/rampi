@@ -1,6 +1,6 @@
 # Rampi
 
-Rampi is a REPL for [Rampcode](https://github.com/gabochi/rampclon), a bytecode
+Rampi is a REPL for [Rampcode](https://github.com/gabochi/rampclon), a bytebeat
 interpreter for Puredata. Rampi allows you to extend rampcode's minimalistic
 language *on-the-fly*.
 

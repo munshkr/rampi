@@ -29,9 +29,42 @@ Run the following to install Rampi
 
 Add the following line on your `~/.vimrc` file:
 
-```
+```vim
 autocmd BufWritePost *.rampi silent exec "!rampi -f <afile>"
 autocmd BufNewFile,BufRead *.rampi set syntax=ruby
+```
+
+### Gedit
+
+You can use the *External Tools* plugin form Gedit to run `rampi` when pressing
+a combination of keys.
+
+First, you have to enable the plugin. Go to Preferences,
+Plugins, and enable External Tools.  Then, on the menu, look for the option
+*Manage External Tools*.  Add a new Tool called "Rampi" by pressing the `+`
+button. Add the following content:
+
+```bash
+#!/bin/bash
+rampi -f $GEDIT_CURRENT_DOCUMENT_NAME
+```
+
+Make sure the define a Shortcut Key, and set "Current document" on Save, to
+make sure file is saved before running Rampi.
+
+Whenever you hit your shortcut key, Gedit will run this script with all
+environment variables cleared.  If you are using [rvm](https://rvm.io/) or
+[chruby](https://github.com/postmodern/chruby) for managing your Ruby
+installations, you may have a problem with this.  Make sure to add any setup
+needed to set up the environemnt again.
+
+For example, for chruby I had to use this:
+
+```bash
+#!/bin/bash
+source /usr/local/share/chruby/chruby.sh   # Configure chruby
+chruby ruby   # Select default Ruby installation
+rampi -f $GEDIT_CURRENT_DOCUMENT_NAME
 ```
 
 ## Usage

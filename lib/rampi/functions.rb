@@ -7,7 +7,7 @@ module Rampi
     #
 
     # Conditional - if (condition, IfTrue-expr, IfFalse-expr)
-    def if(cond, true_exp, false_exp)
+    def cond(cond, true_exp, false_exp)
       Func.new(:if, cond, true_exp, false_exp)
     end
 

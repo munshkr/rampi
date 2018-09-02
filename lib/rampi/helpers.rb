@@ -3,19 +3,31 @@ require 'rampi/variables'
 
 module Rampi
   module Helpers
-    # Step semiquaver counter
-    def step(value)
-      (v1 / 1000) % value
+    # Step counter
+    # By default, len is 1000 = semiquaver
+    def step(value, len=16)
+      (v1 / len2dur(len)) % value
     end
 
     # Exponential envelope
-    def expe(value)
-      1 - pow((v1 % 1000) / 1000, value)
+    def expe(value, len=16)
+      dur = len2dur(len)
+      1 - pow((v1 % dur) / dur, value)
     end
 
     # Inverse exponential envelope
-    def invexpe(value)
-      pow((v1 % 1000) / 1000, value)
+    def invexpe(value, len=16)
+      dur = len2dur(len)
+      pow((v1 % dur) / dur, value)
+    end
+
+    # Converts +note_length+ to ramp duration
+    #
+    # @example len2dur(16) #=> 1000
+    # @example len2dur(8)  #=> 2000
+    #
+    def len2dur(note_length)
+      2 * 8000 / note_length
     end
   end
 end
